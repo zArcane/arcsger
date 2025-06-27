@@ -105,71 +105,143 @@ a {
 }
 
 section {
-    padding: 80px 20px;
-    max-width: 900px;
+    padding: 100px 20px;
+    max-width: 1100px;
     margin: auto;
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transform: scale(0.98) translateY(50px);
+    transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 section.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
 }
 
-.features ul {
-    list-style: none;
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    text-align: center;
+    background: linear-gradient(90deg, rgb(171, 16, 47), #5d3682);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.features li {
-    background: #1a1a1a;
-    padding: 15px 20px;
-    margin-bottom: 12px;
-    border-left: 4px solid crimson;
-    border-radius: 6px;
-}
-
-.how-it-works ol {
-    padding-left: 20px;
-}
-
+.features li,
 .how-it-works li {
-    margin-bottom: 10px;
+    background: radial-gradient(circle at top left, rgba(255, 0, 128, 0.1), rgba(0, 0, 0, 0.6));
+    border: 1px dashed rgba(255, 0, 128, 0.2);
+    padding: 20px 25px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    backdrop-filter: blur(10px);
+}
+
+.features li:hover::before,
+.how-it-works li:hover::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 90deg, crimson, #00ffe1, crimson);
+    animation: spin 5s linear infinite;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.features li:hover,
+.how-it-works li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(255, 0, 128, 0.3);
+}
+
+.features li *,
+.how-it-works li * {
+    position: relative;
+    z-index: 1;
+}
+
+.how-it-works p {
+    color: #bbb;
+    margin-bottom: 20px;
 }
 
 .screenshots img {
     display: block;
-    max-width: 100%;
-    margin: 30px auto;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    max-width: 90%;
+    margin: 50px auto;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(123, 0, 255, 0.2);
+    transform: rotate(-2deg);
+    transition: all 0.4s ease;
+}
+
+.screenshots img:hover {
+    transform: rotate(0deg) scale(1.02);
 }
 
 .faq details {
+    background: linear-gradient(to right, #1a1a1a, #111);
+    border: 1px solid rgba(255, 0, 128, 0.2);
+    border-radius: 16px;
     margin-bottom: 20px;
-    background: #1b1b1b;
-    padding: 15px 20px;
-    border-radius: 8px;
+    padding: 18px 22px;
+    color: #eee;
     cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.faq details:hover {
+    border-color: #ff3ca1b9;
 }
 
 .faq summary {
-    font-weight: bold;
-    color: crimson;
-    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ff4b9b;
 }
 
 footer {
-    padding: 40px 20px;
+    padding: 60px 20px;
     text-align: center;
-    background-color: #111;
-    color: #777;
+    font-size: 0.9rem;
+    color: #999;
+    background: radial-gradient(circle at center, #0f0f0f, #000000);
+    border-top: 2px solid rgba(255, 0, 128, 0.1);
+}
+
+footer a {
+    color: #00ffe1;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: crimson;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media (max-width: 600px) {
     .hero-content h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
     }
 
     section {
